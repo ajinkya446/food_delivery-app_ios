@@ -38,7 +38,9 @@ Firebase project setup
 
 🎨 Screenshots
 
-(Add screenshots of your app here!)
+<img src="https://github.com/user-attachments/assets/7979bcfc-f810-4edd-8187-80eb115efbd3" alt="Description" width="180" height="400">
+
+
 
 💡 Contributing
 
