@@ -63,7 +63,7 @@ struct LoginScreen : View {
                                 print("LOGIN Button Clicked")
                             }) {
                                 Text("LOG IN")
-                                    .font(.system(size: 18, weight: .bold))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.bold)
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(maxWidth: .infinity)
@@ -76,6 +76,24 @@ struct LoginScreen : View {
                             }
                             .padding(.horizontal, 16)
                             .padding(.vertical, 12)
+                            Spacer().frame(height: 20)
+                            HStack{
+                                Text("Don’t have an account?")
+                                    .foregroundColor(Color(UIColor(red: 100/255, green: 105/255, blue: 130/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 18)).fontWeight(.medium)
+                                    
+                                Spacer().frame(width: 20)
+                                Text("SIGN UP")
+                                    .foregroundColor(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 18)).fontWeight(.bold)
+                                    .onTapGesture {
+                                        print("New user creation tapped");
+                                    }
+                                    
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .center)
+
 
                         }
                         
