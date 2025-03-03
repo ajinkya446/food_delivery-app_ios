@@ -11,7 +11,6 @@ struct LoginScreen : View {
     @State private var emailText: String = ""
     @State private var isNavigating: Bool = false
     
-    
     var body: some View {
         NavigationView{
             ZStack {
@@ -20,16 +19,16 @@ struct LoginScreen : View {
                 
                 GeometryReader { geometry in
                     VStack(alignment: .center){
-                        Spacer().frame(height: 120)
+                        Spacer().frame(height: geometry.size.height*0.120)
                         Text("Log In")
                             .font(.custom("Roboto-Bold", size: 40))
                             .foregroundColor(.white)
-                        Spacer().frame(height: 12)
+                        Spacer().frame(height: geometry.size.height*0.032)
                         Text("Please sign in to your existing account")
                             .font(.custom("Roboto-Regular", size: 16))
                             .foregroundColor(.white)
                         
-                        Spacer().frame(height: 80)
+                        Spacer().frame(height: geometry.size.height*0.08)
                         ZStack(alignment: .topLeading){
                             Rectangle()
                                 .fill(Color.clear)
@@ -42,21 +41,21 @@ struct LoginScreen : View {
                                 )
                                 .ignoresSafeArea(.all, edges: .horizontal)
                             VStack(alignment: .leading){
-                                Spacer().frame(height: 20)
+                                Spacer().frame(height: geometry.size.height*0.020)
                                 Text("Email")
                                     .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
                                     .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
                                     .padding(.horizontal,16)
-                                Spacer().frame(height: 20)
+                                Spacer().frame(height: geometry.size.height*0.020)
                                 RoundedTextField(text: $emailText)
-                                Spacer().frame(height: 20)
+                                Spacer().frame(height: geometry.size.height*0.020)
                                 Text("Password")
                                     .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
                                     .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
                                     .padding(.horizontal,16)
-                                Spacer().frame(height: 20)
+                                Spacer().frame(height: geometry.size.height*0.020)
                                 PasswordTextField()
-                                Spacer().frame(height: 20)
+                                Spacer().frame(height: geometry.size.height*0.020)
                                 
                                 NavigationLink(destination: ForgetPassword()){
                                     Text("Forget Password")
@@ -65,7 +64,7 @@ struct LoginScreen : View {
                                     
                                 }
                                 .padding(.horizontal,16)
-                                Spacer().frame(height: 40)
+                                Spacer().frame(height: geometry.size.height*0.04)
                                 Button(action: {
                                     print("LOGIN Button Clicked")
                                     if emailText.isEmpty{
@@ -86,13 +85,13 @@ struct LoginScreen : View {
                                             RoundedRectangle(cornerRadius: 12)
                                                 .stroke(Color.white, lineWidth: 2) // White border
                                         )
-                                }.frame(height:58)
+                                }.frame(height:geometry.size.height*0.062)
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 12)
-                                Spacer().frame(height: 20)
+                                Spacer().frame(height: geometry.size.height*0.02)
                                 NavigationLink(destination: VerificationScreen(email: $emailText), isActive: $isNavigating) {
                                     EmptyView()
-                                }
+                                }.frame(height:geometry.size.height*0.010)
                                 HStack{
                                     Text("Don’t have an account?")
                                         .foregroundColor(Color(UIColor(red: 100/255, green: 105/255, blue: 130/255, alpha: 1)))

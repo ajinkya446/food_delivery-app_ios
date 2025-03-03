@@ -17,16 +17,16 @@ struct ForgetPassword : View{
                 .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack(alignment: .center){
-                    Spacer().frame(height: 120)
+                    Spacer().frame(height: geometry.size.height*0.120)
                     Text("Forget Password")
                         .font(.custom("Roboto-Bold", size: 40))
                         .foregroundColor(.white)
-                    Spacer().frame(height: 12)
+                    Spacer().frame(height: geometry.size.height*0.032)
                     Text("Please sign in to your existing account")
                         .font(.custom("Roboto-Regular", size: 16))
                         .foregroundColor(.white)
                     
-                    Spacer().frame(height: 80)
+                    Spacer().frame(height: geometry.size.height*0.08)
                     ZStack(alignment: .topLeading){
                         Rectangle()
                             .fill(Color.clear)
@@ -39,14 +39,14 @@ struct ForgetPassword : View{
                             )
                             .ignoresSafeArea(.all, edges: .horizontal)
                         VStack(alignment: .leading){
-                            Spacer().frame(height: 20)
+                            Spacer().frame(height: geometry.size.height*0.020)
                             Text("Email")
                                 .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
                                 .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
                                 .padding(.horizontal,16)
-                            Spacer().frame(height: 20)
+                            Spacer().frame(height: geometry.size.height*0.04)
                             RoundedTextField(text: $emailText)
-                            Spacer().frame(height: 40)
+                            Spacer().frame(height: geometry.size.height*0.04)
                             Button(action: {
                                 if emailText.isEmpty{
                                     print("email is empty")
@@ -66,7 +66,7 @@ struct ForgetPassword : View{
                                         RoundedRectangle(cornerRadius: 12)
                                             .stroke(Color.white, lineWidth: 2) // White border
                                     )
-                            }.frame(height:58)
+                            }.frame(height:geometry.size.height*0.062)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
                             
