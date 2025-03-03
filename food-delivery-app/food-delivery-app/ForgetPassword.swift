@@ -1,13 +1,12 @@
 //
-//  LoginScreen.swift
+//  ForgetPassword.swift
 //  food-delivery-app
 //
-//  Created by Ajinkya Aher on 28/02/25.
+//  Created by Ajinkya Aher on 03/03/25.
 //
-
 import SwiftUI
 
-struct LoginScreen : View {
+struct ForgetPassword : View{
     var body: some View {
         NavigationView{
             ZStack {
@@ -16,7 +15,7 @@ struct LoginScreen : View {
                 GeometryReader { geometry in
                     VStack(alignment: .center){
                         Spacer().frame(height: 120)
-                        Text("Log In")
+                        Text("Forget Password")
                             .font(.custom("Roboto-Bold", size: 30))
                             .foregroundColor(.white)
                         Spacer().frame(height: 12)
@@ -44,27 +43,11 @@ struct LoginScreen : View {
                                     .padding(.horizontal,16)
                                 Spacer().frame(height: 20)
                                 RoundedTextField()
-                                Spacer().frame(height: 20)
-                                Text("Password")
-                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
-                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
-                                    .padding(.horizontal,16)
-                                Spacer().frame(height: 20)
-                                PasswordTextField()
-                                Spacer().frame(height: 20)
-                                
-                                NavigationLink(destination: ForgetPassword()){
-                                    Text("Forget Password")
-                                        .foregroundColor(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
-                                        .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
-                                    
-                                }
-                                .padding(.horizontal,16)
                                 Spacer().frame(height: 40)
                                 Button(action: {
                                     print("LOGIN Button Clicked")
                                 }) {
-                                    Text("LOG IN")
+                                    Text("SEND CODE")
                                         .font(.custom("Roboto-Regular", size: 16)).fontWeight(.bold)
                                         .foregroundColor(.white)
                                         .padding()
@@ -78,34 +61,12 @@ struct LoginScreen : View {
                                 }.frame(height:58)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
-                                Spacer().frame(height: 20)
-                                HStack{
-                                    Text("Don’t have an account?")
-                                        .foregroundColor(Color(UIColor(red: 100/255, green: 105/255, blue: 130/255, alpha: 1)))
-                                        .font(.custom("Roboto-Regular", size: 18)).fontWeight(.medium)
-                                    
-                                    Spacer().frame(width: 20)
-                                    Text("SIGN UP")
-                                        .foregroundColor(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
-                                        .font(.custom("Roboto-Regular", size: 18)).fontWeight(.bold)
-                                        .onTapGesture {
-                                            print("New user creation tapped");
-                                        }
-                                    
-                                }
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .center)
                             }
                         }
                         
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
-            
         }
-        
     }
-    
-    
-    
 }
