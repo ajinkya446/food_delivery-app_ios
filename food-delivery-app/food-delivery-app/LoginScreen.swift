@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct LoginScreen : View {
+    @State private var emailText: String = ""
+    @State private var isNavigating: Bool = false
+    
+    
     var body: some View {
         NavigationView{
             ZStack {
                 Color(UIColor(red: 18/255, green: 18/255, blue: 35/255, alpha: 1))
                     .ignoresSafeArea()
+                
                 GeometryReader { geometry in
                     VStack(alignment: .center){
                         Spacer().frame(height: 120)
                         Text("Log In")
-                            .font(.custom("Roboto-Bold", size: 30))
+                            .font(.custom("Roboto-Bold", size: 40))
                             .foregroundColor(.white)
                         Spacer().frame(height: 12)
                         Text("Please sign in to your existing account")
@@ -30,7 +35,7 @@ struct LoginScreen : View {
                                 .fill(Color.clear)
                                 .frame(height: geometry.size.height)
                                 .frame(maxWidth: geometry.size.width)
-                                .background(Color.white) // Optional background color
+                                .background(Color.white)
                                 .clipShape(RoundedCornerShape(radius: 16, corners: [.topLeft, .topRight]))  .overlay(
                                     RoundedCornerShape(radius: 16, corners: [.topLeft, .topRight])
                                         .stroke(Color.white) // Border color and width
@@ -43,7 +48,7 @@ struct LoginScreen : View {
                                     .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
                                     .padding(.horizontal,16)
                                 Spacer().frame(height: 20)
-                                RoundedTextField()
+                                RoundedTextField(text: $emailText)
                                 Spacer().frame(height: 20)
                                 Text("Password")
                                     .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
@@ -63,6 +68,12 @@ struct LoginScreen : View {
                                 Spacer().frame(height: 40)
                                 Button(action: {
                                     print("LOGIN Button Clicked")
+                                    if emailText.isEmpty{
+                                        print("email is empty")
+                                        
+                                    }else{
+                                        isNavigating = true
+                                    }
                                 }) {
                                     Text("LOG IN")
                                         .font(.custom("Roboto-Regular", size: 16)).fontWeight(.bold)
@@ -76,9 +87,12 @@ struct LoginScreen : View {
                                                 .stroke(Color.white, lineWidth: 2) // White border
                                         )
                                 }.frame(height:58)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 12)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
                                 Spacer().frame(height: 20)
+                                NavigationLink(destination: VerificationScreen(email: $emailText), isActive: $isNavigating) {
+                                    EmptyView()
+                                }
                                 HStack{
                                     Text("Don’t have an account?")
                                         .foregroundColor(Color(UIColor(red: 100/255, green: 105/255, blue: 130/255, alpha: 1)))
@@ -105,7 +119,6 @@ struct LoginScreen : View {
         }
         
     }
-    
     
     
 }

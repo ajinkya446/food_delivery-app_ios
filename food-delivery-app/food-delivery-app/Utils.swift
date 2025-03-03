@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct RoundedTextField: View {
-    @State private var text: String = ""
+    @Binding var text: String
     var body: some View {
         TextField(
             "", text: $text,

@@ -29,9 +29,22 @@
 		D4F509552D717E7D0042572F /* food-delivery-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "food-delivery-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D43C6CD12D75DD600005C53A /* Exceptions for "food-delivery-app" folder in "food-delivery-app" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D4F509392D717E790042572F /* food-delivery-app */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D4F5093C2D717E790042572F /* food-delivery-app */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D43C6CD12D75DD600005C53A /* Exceptions for "food-delivery-app" folder in "food-delivery-app" target */,
+			);
 			path = "food-delivery-app";
 			sourceTree = "<group>";
 		};
@@ -397,6 +410,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "food-delivery-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Feasto;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -439,6 +453,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "food-delivery-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Feasto;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
