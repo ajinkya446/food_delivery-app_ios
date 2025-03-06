@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VerificationScreen : View{
     @Binding var email: String
+    @State private var code: String = ""
     
     var body: some View {
         ZStack {
@@ -44,12 +45,18 @@ struct VerificationScreen : View{
                             .ignoresSafeArea(.all, edges: .horizontal)
                         VStack(alignment: .leading){
                             Spacer().frame(height: 20)
-                            Text("Email")
-                                .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
-                                .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
-                                .padding(.horizontal,16)
+                            HStack{
+                                Text("CODE")
+                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
+                                Spacer()
+                                Text("Resend CODE")
+                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.light).underline()
+                                
+                            }.padding(.horizontal,16)
                             Spacer().frame(height: 20)
-//                            RoundedTextField(email: $emailText)
+                            RoundedOTPTextField(code: $code)
                             Spacer().frame(height: 40)
                             Button(action: {
                                 print("LOGIN Button Clicked")
