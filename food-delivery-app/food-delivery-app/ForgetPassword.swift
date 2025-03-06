@@ -23,7 +23,7 @@ struct ForgetPassword : View{
                         .foregroundColor(.white)
                     Spacer().frame(height: geometry.size.height*0.032)
                     Text("Please sign in to your existing account")
-                        .font(.custom("Roboto-Regular", size: 16))
+                        .font(.custom("Roboto-Regular",size: 16))
                         .foregroundColor(.white)
                     
                     Spacer().frame(height: geometry.size.height*0.08)

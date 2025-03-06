@@ -1,16 +1,16 @@
 //
-//  LoginScreen.swift
+//  SignUpScreen.swift
 //  food-delivery-app
 //
-//  Created by Ajinkya Aher on 28/02/25.
+//  Created by Ajinkya Aher on 06/03/25.
 //
 
 import SwiftUI
 
-struct LoginScreen : View {
+struct SignUpScreen : View {
     @State private var emailText: String = ""
+    @State private var nameText: String = ""
     @State private var isNavigating: Bool = false
-    @State private var isNavigatingSignUP: Bool = false
     
     var body: some View {
         NavigationView{
@@ -21,11 +21,11 @@ struct LoginScreen : View {
                 GeometryReader { geometry in
                     VStack(alignment: .center){
                         Spacer().frame(height: geometry.size.height*0.120)
-                        Text("Log In")
+                        Text("Sign Up")
                             .font(.custom("Roboto-Bold", size: 40))
                             .foregroundColor(.white)
                         Spacer().frame(height: geometry.size.height*0.032)
-                        Text("Please sign in to your existing account")
+                        Text("Please sign up to get started")
                             .font(.custom("Roboto-Regular", size: 16))
                             .foregroundColor(.white)
                         
@@ -43,6 +43,13 @@ struct LoginScreen : View {
                                 .ignoresSafeArea(.all, edges: .horizontal)
                             VStack(alignment: .leading){
                                 Spacer().frame(height: geometry.size.height*0.020)
+                                Text("Name")
+                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
+                                    .padding(.horizontal,16)
+                                Spacer().frame(height: geometry.size.height*0.020)
+                                RoundedNameTextField(text: $nameText)
+                                Spacer().frame(height: geometry.size.height*0.020)
                                 Text("Email")
                                     .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
                                     .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
@@ -50,32 +57,24 @@ struct LoginScreen : View {
                                 Spacer().frame(height: geometry.size.height*0.020)
                                 RoundedTextField(text: $emailText)
                                 Spacer().frame(height: geometry.size.height*0.020)
-                                Text("Password")
+                                Text("PASSWORD")
                                     .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
                                     .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
                                     .padding(.horizontal,16)
                                 Spacer().frame(height: geometry.size.height*0.020)
                                 PasswordTextField()
                                 Spacer().frame(height: geometry.size.height*0.020)
-                                
-                                NavigationLink(destination: ForgetPassword()){
-                                    Text("Forget Password")
-                                        .foregroundColor(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
-                                        .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
-                                    
-                                }
-                                .padding(.horizontal,16)
-                                Spacer().frame(height: geometry.size.height*0.04)
+                                Text("RE-TYPE PASSWORD")
+                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
+                                    .padding(.horizontal,16)
+                                Spacer().frame(height: geometry.size.height*0.020)
+                                PasswordTextField()
+                                Spacer().frame(height: geometry.size.height*0.040)
                                 Button(action: {
-                                    print("LOGIN Button Clicked")
-                                    if emailText.isEmpty{
-                                        print("email is empty")
-                                        
-                                    }else{
-                                        isNavigating = true
-                                    }
+                                   
                                 }) {
-                                    Text("LOG IN")
+                                    Text("SIGN UP")
                                         .font(.custom("Roboto-Regular", size: 16)).fontWeight(.bold)
                                         .foregroundColor(.white)
                                         .padding()
@@ -100,11 +99,12 @@ struct LoginScreen : View {
                                         .font(.custom("Roboto-Regular", size: 18)).fontWeight(.medium)
                                     
                                     Spacer().frame(width: 20)
-                                    NavigationLink(destination: SignUpScreen()){ Text("SIGN UP")
-                                            .foregroundColor(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
-                                            .font(.custom("Roboto-Regular", size: 18)).fontWeight(.bold)
-                                        
-                                    }
+                                    Text("SIGN UP")
+                                        .foregroundColor(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
+                                        .font(.custom("Roboto-Regular", size: 18)).fontWeight(.bold)
+                                        .onTapGesture {
+                                            print("New user creation tapped");
+                                        }
                                     
                                 }
                                 .padding()
