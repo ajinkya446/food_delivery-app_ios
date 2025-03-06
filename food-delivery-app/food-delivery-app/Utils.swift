@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct RoundedTextField: View {
-    @State private var text: String = ""
+    @Binding var text: String
     var body: some View {
         TextField(
             "", text: $text,
@@ -25,6 +25,53 @@ struct RoundedTextField: View {
     }
 }
 
+struct RoundedNameTextField: View {
+    @Binding var text: String
+    var body: some View {
+        TextField(
+            "", text: $text,
+            prompt: Text("John Doe").foregroundColor(.gray)
+        )
+        .padding(12)
+        .background(
+            Color(
+                UIColor(
+                    red: 240 / 255, green: 245 / 255, blue: 250 / 255, alpha: 1)
+            )
+        )
+        .cornerRadius(10)
+        .padding(.horizontal, 16)
+    }
+}
+
+struct RoundedOTPTextField: View {
+    @Binding var code: String
+    var maxLength: Int = 6  // Set the maximum length here
+
+    var body: some View {
+        TextField(
+            "",
+            text: $code,
+            prompt: Text("Enter CODE here").foregroundColor(.gray)
+        )
+        .onChange(of: code) { newValue in
+            if newValue.count > maxLength {
+                code = String(newValue.prefix(maxLength))
+            }
+        }
+        .padding(12)
+        .background(
+            Color(
+                UIColor(
+                    red: 240 / 255, green: 245 / 255, blue: 250 / 255, alpha: 1)
+                )
+        )
+        .cornerRadius(10)
+        .padding(.horizontal, 16)
+    }
+}
+
+
 struct RoundedCornerShape: Shape {
     var radius: CGFloat
     var corners: UIRectCorner
@@ -41,7 +88,7 @@ struct RoundedCornerShape: Shape {
 
 struct PasswordTextField: View {
     @State private var password: String = ""
-    @State private var isSecure: Bool = true  // Toggle visibility
+    @State private var isSecure: Bool = true
     
     var body: some View {
         HStack {
@@ -66,3 +113,19 @@ struct PasswordTextField: View {
         .padding(.horizontal, 16)
     }
 }
+
+class OTPManager : ObservableObject {
+    @Published var text = ""{
+        didSet {
+            if text.count > charLimit && oldValue.count <= charLimit{
+                text = oldValue
+            }
+        }
+    }
+    let charLimit: Int
+    
+    init(limit: Int = 4){
+        charLimit = limit
+    }
+}
+

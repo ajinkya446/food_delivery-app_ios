@@ -1,32 +1,37 @@
 //
-//  ForgetPassword.swift
+//  VerificationScreen.swift
 //  food-delivery-app
 //
 //  Created by Ajinkya Aher on 03/03/25.
 //
+
 import SwiftUI
 
-struct ForgetPassword : View{
-    @State private var emailText: String = ""
-    @State private var isNavigating: Bool = false
+struct VerificationScreen : View{
+    @Binding var email: String
+    @State private var code: String = ""
     
     var body: some View {
-        
         ZStack {
             Color(UIColor(red: 18/255, green: 18/255, blue: 35/255, alpha: 1))
                 .ignoresSafeArea()
             GeometryReader { geometry in
                 VStack(alignment: .center){
-                    Spacer().frame(height: geometry.size.height*0.120)
-                    Text("Forget Password")
+                    Spacer().frame(height: 120)
+                    Text("Verification")
                         .font(.custom("Roboto-Bold", size: 40))
                         .foregroundColor(.white)
-                    Spacer().frame(height: geometry.size.height*0.032)
-                    Text("Please sign in to your existing account")
-                        .font(.custom("Roboto-Regular",size: 16))
+                    Spacer().frame(height: 12)
+                    Text("We have sent code to your email")
+                        .font(.custom("Roboto-Regular", size: 16))
                         .foregroundColor(.white)
-                    
-                    Spacer().frame(height: geometry.size.height*0.08)
+                    Spacer().frame(height: 12)
+                    Text("\(email)")
+                        .font(.custom("Roboto-Bold", size: 16))
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding()
+                    Spacer().frame(height: 80)
                     ZStack(alignment: .topLeading){
                         Rectangle()
                             .fill(Color.clear)
@@ -39,21 +44,22 @@ struct ForgetPassword : View{
                             )
                             .ignoresSafeArea(.all, edges: .horizontal)
                         VStack(alignment: .leading){
-                            Spacer().frame(height: geometry.size.height*0.020)
-                            Text("Email")
-                                .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
-                                .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
-                                .padding(.horizontal,16)
-                            Spacer().frame(height: geometry.size.height*0.04)
-                            RoundedTextField(text: $emailText)
-                            Spacer().frame(height: geometry.size.height*0.04)
-                            Button(action: {
-                                if emailText.isEmpty{
-                                    print("email is empty")
-                                }else{
-                                    isNavigating = true
-                                }
+                            Spacer().frame(height: 20)
+                            HStack{
+                                Text("CODE")
+                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
+                                Spacer()
+                                Text("Resend CODE")
+                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
+                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.light).underline()
                                 
+                            }.padding(.horizontal,16)
+                            Spacer().frame(height: 20)
+                            RoundedOTPTextField(code: $code)
+                            Spacer().frame(height: 40)
+                            Button(action: {
+                                print("LOGIN Button Clicked")
                             }) {
                                 Text("SEND CODE")
                                     .font(.custom("Roboto-Regular", size: 16)).fontWeight(.bold)
@@ -66,14 +72,9 @@ struct ForgetPassword : View{
                                         RoundedRectangle(cornerRadius: 12)
                                             .stroke(Color.white, lineWidth: 2) // White border
                                     )
-                            }.frame(height:geometry.size.height*0.062)
+                            }.frame(height:58)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
-                            
-                            NavigationLink(destination: VerificationScreen(email: $emailText), isActive: $isNavigating) {
-                                EmptyView()
-                            }
-                            .hidden()
                         }
                     }
                     
