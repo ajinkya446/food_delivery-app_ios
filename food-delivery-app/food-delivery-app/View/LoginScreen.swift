@@ -11,7 +11,7 @@ struct LoginScreen: View {
     @State private var emailText: String = ""
     @State private var isNavigating: Bool = false
     @State private var isNavigatingSignUP: Bool = false
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -107,7 +107,6 @@ struct LoginScreen: View {
                                     print("LOGIN Button Clicked")
                                     if emailText.isEmpty {
                                         print("email is empty")
-
                                     } else {
                                         isNavigating = true
                                     }
