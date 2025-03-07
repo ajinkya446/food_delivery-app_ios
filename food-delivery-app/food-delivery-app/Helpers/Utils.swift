@@ -87,7 +87,7 @@ struct RoundedCornerShape: Shape {
 }
 
 struct PasswordTextField: View {
-    @State private var password: String = ""
+    @Binding var password: String
     @State private var isSecure: Bool = true
     
     var body: some View {
