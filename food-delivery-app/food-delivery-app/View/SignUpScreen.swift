@@ -10,8 +10,12 @@ import SwiftUI
 struct SignUpScreen: View {
     @State private var emailText: String = ""
     @State private var password: String = ""
+    @State private var reTypePassword: String = ""
     @State private var nameText: String = ""
     @State private var isNavigating: Bool = false
+
+    @State private var errorMessage: String = ""
+    @State private var iconImage: String = ""
 
     var body: some View {
         NavigationView {
@@ -113,11 +117,45 @@ struct SignUpScreen: View {
                                     .padding(.horizontal, 16)
                                 Spacer().frame(
                                     height: geometry.size.height * 0.020)
-                                PasswordTextField(password: $password)
+                                PasswordTextField(password: $reTypePassword)
                                 Spacer().frame(
                                     height: geometry.size.height * 0.040)
                                 Button(action: {
-
+                                    if nameText.isEmpty {
+                                        print("password is empty")
+                                        errorMessage =
+                                            "Please enter full name"
+                                        iconImage = "xmark.circle.fill"
+                                        ToastManager.shared.showToastMessage(
+                                            message: errorMessage,
+                                            icon: iconImage)
+                                    } else if emailText.isEmpty {
+                                        print("email is empty")
+                                        errorMessage =
+                                            "Please enter e-mail address"
+                                        iconImage = "xmark.circle.fill"
+                                        ToastManager.shared.showToastMessage(
+                                            message: errorMessage,
+                                            icon: iconImage)
+                                    } else if password.isEmpty {
+                                        print("password is empty")
+                                        errorMessage =
+                                            "Please enter password"
+                                        iconImage = "xmark.circle.fill"
+                                        ToastManager.shared.showToastMessage(
+                                            message: errorMessage,
+                                            icon: iconImage)
+                                    } else if reTypePassword.isEmpty {
+                                        print("password is empty")
+                                        errorMessage =
+                                            "Please enter RETYPE password"
+                                        iconImage = "xmark.circle.fill"
+                                        ToastManager.shared.showToastMessage(
+                                            message: errorMessage,
+                                            icon: iconImage)
+                                    } else {
+                                        isNavigating = true
+                                    }
                                 }) {
                                     Text("SIGN UP")
                                         .font(
@@ -191,7 +229,11 @@ struct SignUpScreen: View {
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
 
-        }
+        }.overlay(
+            VStack {
+                Spacer()
+                ToastView()
+            })
 
     }
 

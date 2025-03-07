@@ -12,7 +12,6 @@ struct LoginScreen: View {
     @State private var password: String = ""
     @State private var isNavigating: Bool = false
     @State private var isNavigatingSignUP: Bool = false
-    @State private var showToast: Bool = false
 
     @State private var errorMessage: String = ""
     @State private var iconImage: String = ""
@@ -114,14 +113,18 @@ struct LoginScreen: View {
                                         print("email is empty")
                                         errorMessage =
                                             "Please enter e-mail address"
-                                        iconImage = "xmark.octagon.fill"
-                                        showToastMessage()
+                                        iconImage = "xmark.circle.fill"
+                                        ToastManager.shared.showToastMessage(
+                                            message: errorMessage,
+                                            icon: iconImage)
                                     } else if password.isEmpty {
                                         print("password is empty")
                                         errorMessage =
                                             "Please enter password"
-                                        iconImage = "xmark.octagon.fill"
-                                        showToastMessage()
+                                        iconImage = "xmark.circle.fill"
+                                        ToastManager.shared.showToastMessage(
+                                            message: errorMessage,
+                                            icon: iconImage)
                                     } else {
                                         isNavigating = true
                                     }
@@ -200,24 +203,12 @@ struct LoginScreen: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
+
         }.overlay(
             VStack {
                 Spacer()
-                if showToast {
-                    ToastView(message: errorMessage, icon: iconImage)
-                }
+                ToastView()
             })
     }
 
-    func showToastMessage() {
-        withAnimation {
-            showToast = true
-        }
-        Task {
-            try? await Task.sleep(nanoseconds: 2_000_000_000)
-            withAnimation {
-                showToast = false
-            }
-        }
-    }
 }
