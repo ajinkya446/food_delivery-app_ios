@@ -111,6 +111,7 @@ struct PasswordTextField: View {
                 .stroke(Color.gray.opacity(0.3), lineWidth: 1)  // Border
         )
         .padding(.horizontal, 16)
+        .ignoresSafeArea(.keyboard)
     }
 }
 
