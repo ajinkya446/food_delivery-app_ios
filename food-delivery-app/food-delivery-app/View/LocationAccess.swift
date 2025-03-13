@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LocationAccess: View {
+    @StateObject private var locationManager = LocationManager.shared
+
     @State var isFrom: Bool
     var body: some View {
         VStack{
@@ -21,6 +23,11 @@ struct LocationAccess: View {
             Spacer().frame(height: 20)
             Button(action: {
                 // Add button action here
+                locationManager.requestLocation()
+                if let location = locationManager.userLocation {
+                    print("Latitude: \(location.coordinate.latitude)")
+                    print("Longitude: \(location.coordinate.longitude)")
+                }
             }) {
                 HStack {
                     Text("ACCESS LOCATION")
