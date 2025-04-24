@@ -7,16 +7,22 @@
 
 import SwiftUI
 
-struct VerificationScreen : View{
+struct VerificationScreen: View {
     @Binding var email: String
     @State private var code: String = ""
-    
+
+    @State private var errorMessage: String = ""
+    @State private var iconImage: String = ""
+
     var body: some View {
         ZStack {
-            Color(UIColor(red: 18/255, green: 18/255, blue: 35/255, alpha: 1))
-                .ignoresSafeArea()
+            Color(
+                UIColor(
+                    red: 18 / 255, green: 18 / 255, blue: 35 / 255, alpha: 1)
+            )
+            .ignoresSafeArea()
             GeometryReader { geometry in
-                VStack(alignment: .center){
+                VStack(alignment: .center) {
                     Spacer().frame(height: 120)
                     Text("Verification")
                         .font(.custom("Roboto-Bold", size: 40))
@@ -32,55 +38,87 @@ struct VerificationScreen : View{
                         .foregroundColor(.white)
                         .padding()
                     Spacer().frame(height: 80)
-                    ZStack(alignment: .topLeading){
+                    ZStack(alignment: .topLeading) {
                         Rectangle()
                             .fill(Color.clear)
                             .frame(height: geometry.size.height)
                             .frame(maxWidth: geometry.size.width)
-                            .background(Color.white) // Optional background color
-                            .clipShape(RoundedCornerShape(radius: 16, corners: [.topLeft, .topRight]))  .overlay(
-                                RoundedCornerShape(radius: 16, corners: [.topLeft, .topRight])
-                                    .stroke(Color.white) // Border color and width
+                            .background(Color.white)  // Optional background color
+                            .clipShape(
+                                RoundedCornerShape(
+                                    radius: 16, corners: [.topLeft, .topRight])
+                            ).overlay(
+                                RoundedCornerShape(
+                                    radius: 16, corners: [.topLeft, .topRight]
+                                )
+                                .stroke(Color.white)  // Border color and width
                             )
                             .ignoresSafeArea(.all, edges: .horizontal)
-                        VStack(alignment: .leading){
+                        VStack(alignment: .leading) {
                             Spacer().frame(height: 20)
-                            HStack{
+                            HStack {
                                 Text("CODE")
-                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
-                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.medium)
+                                    .foregroundColor(
+                                        Color(
+                                            UIColor(
+                                                red: 50 / 255, green: 52 / 255,
+                                                blue: 62 / 255, alpha: 1))
+                                    )
+                                    .font(.custom("Roboto-Regular", size: 16))
+                                    .fontWeight(.medium)
                                 Spacer()
                                 Text("Resend CODE")
-                                    .foregroundColor(Color(UIColor(red: 50/255, green: 52/255, blue: 62/255, alpha: 1)))
-                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.light).underline()
-                                
-                            }.padding(.horizontal,16)
+                                    .foregroundColor(
+                                        Color(
+                                            UIColor(
+                                                red: 50 / 255, green: 52 / 255,
+                                                blue: 62 / 255, alpha: 1))
+                                    )
+                                    .font(.custom("Roboto-Regular", size: 16))
+                                    .fontWeight(.light).underline()
+
+                            }.padding(.horizontal, 16)
                             Spacer().frame(height: 20)
                             RoundedOTPTextField(code: $code)
                             Spacer().frame(height: 40)
                             Button(action: {
                                 print("LOGIN Button Clicked")
+                                errorMessage =
+                                    "Please enter 6 digit CODE"
+                                iconImage = "xmark.circle.fill"
+                                ToastManager.shared.showToastMessage(message:errorMessage,icon:iconImage)
                             }) {
                                 Text("SEND CODE")
-                                    .font(.custom("Roboto-Regular", size: 16)).fontWeight(.bold)
+                                    .font(.custom("Roboto-Regular", size: 16))
+                                    .fontWeight(.bold)
                                     .foregroundColor(.white)
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(Color(UIColor(red: 255/255, green: 118/255, blue: 34/255, alpha: 1)))
+                                    .background(
+                                        Color(
+                                            UIColor(
+                                                red: 255 / 255,
+                                                green: 118 / 255,
+                                                blue: 34 / 255, alpha: 1))
+                                    )
                                     .cornerRadius(12)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.white, lineWidth: 2) // White border
+                                            .stroke(Color.white, lineWidth: 2)  // White border
                                     )
-                            }.frame(height:58)
+                            }.frame(height: 58)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
                         }
                     }
-                    
+
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+        }.overlay(
+            VStack {
+                Spacer()
+                ToastView()
+            })
     }
 }

@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>we need your location while using app</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>we need your location to provide better service</string>
+	<key>NSLocationUsageDescription</key>
+	<string>We ned your location to improve app experience</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Medium.ttf</string>
